@@ -94,7 +94,7 @@ module Gruf
 
       server_thread = Thread.new do
         logger.info { "[gruf] Starting gruf server at #{@hostname}..." }
-        server.run_till_terminated_or_interrupted(KILL_SIGNALS)
+        server.run_till_terminated_or_interrupted(KILL_SIGNALS, Gruf.rpc_server_options[:stop_server_thread_poll_interval])
       end
       @started = true
       update_proc_title(:serving)

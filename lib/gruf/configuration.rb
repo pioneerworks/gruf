@@ -117,7 +117,8 @@ module Gruf
         poll_period: GRPC::RpcServer::DEFAULT_POLL_PERIOD,
         pool_keep_alive: GRPC::Pool::DEFAULT_KEEP_ALIVE,
         connect_md_proc: nil,
-        server_args: {}
+        server_args: {},
+        stop_server_thread_poll_interval: 60
       }.freeze
     }.freeze
 
@@ -184,7 +185,8 @@ module Gruf
         pool_keep_alive: ::ENV.fetch('GRPC_SERVER_POOL_KEEP_ALIVE', GRPC::Pool::DEFAULT_KEEP_ALIVE).to_i,
         poll_period: ::ENV.fetch('GRPC_SERVER_POLL_PERIOD', GRPC::RpcServer::DEFAULT_POLL_PERIOD).to_i,
         connect_md_proc: nil,
-        server_args: {}
+        server_args: {},
+        stop_server_thread_poll_interval: 60
       }
       if use_default_interceptors
         interceptors.use(::Gruf::Interceptors::ActiveRecord::ConnectionReset)
